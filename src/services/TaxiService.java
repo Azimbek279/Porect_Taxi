@@ -18,4 +18,6 @@ public interface TaxiService {
     List<Taxi> filterByTaxiType(String taxiType);
 
     void update(Long id);
+
+    List<Taxi> getTaxiById(long id);
 }
