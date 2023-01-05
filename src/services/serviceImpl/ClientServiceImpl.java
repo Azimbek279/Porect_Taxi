@@ -21,29 +21,6 @@ public class ClientServiceImpl implements services.ClientService {
 
     @Override
     public String addClient(Client client) {
-        try {
-
-            for (Client dataBaseClient : dataBase.getClients()) {
-                if (dataBaseClient.getId().equals(client.getId())) {
-                    throw new RuntimeException("ID did not match!");
-                }
-                if (dataBaseClient.getDateOfBirth() == client.getDateOfBirth()) {
-                    throw new RuntimeException("DateOfBirth did not match!");
-                }
-                if (dataBaseClient.getFullName().equals(client.getFullName())) {
-                    throw new RuntimeException("FullName did not match!");
-                }
-                if (dataBaseClient.getMoney().intValue() < 0) {
-                    throw new RuntimeException("Pls top up the money, if your money is less than 0.");
-                }
-                if (!dataBaseClient.getPhoneNumber().startsWith("+996") && client.getPhoneNumber().length() >= 13)
-                    throw new RuntimeException("PhoneNumber did not match!");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
         this.dataBase.getClients().add(client);
         return "Successfully!";
     }
