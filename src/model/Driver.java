@@ -14,7 +14,9 @@ public class Driver {
     private BigDecimal money;
     private TaxiType taxi;
 
-    public Driver(Long id, String name, String surName, Gender gender, String phoneNumber, BigDecimal money, TaxiType taxi) {
+    private Taxi taxi1;
+
+    public Driver(Long id, String name, String surName, Gender gender, String phoneNumber, BigDecimal money, TaxiType taxi,Taxi taxi1) {
         this.id = id;
         this.name = name;
         this.surName = surName;
@@ -22,6 +24,7 @@ public class Driver {
         this.phoneNumber = phoneNumber;
         this.money = money;
         this.taxi = taxi;
+        this.taxi1 = taxi1;
     }
 
     public Long getId() {
@@ -78,6 +81,10 @@ public class Driver {
 
     public void setTaxi(TaxiType taxi) {
         this.taxi = taxi;
+    }
+
+    public void setTaxi(Taxi taxi1){
+        this.taxi1 = taxi1;
     }
 
     @Override
