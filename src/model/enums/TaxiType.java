@@ -1,5 +1,7 @@
 package model.enums;
 
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 public enum TaxiType {
