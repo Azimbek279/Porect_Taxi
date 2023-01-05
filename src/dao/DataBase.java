@@ -5,20 +5,24 @@ import model.Driver;
 import model.License;
 import model.Taxi;
 
+import java.util.List;
 import java.util.Set;
 
 public class DataBase {
-    Set<Client> clients;
-    Set<Driver>drivers;
-    Set<Taxi>taxis;
+    private Set<Client> clients;
+    private Set<Driver>drivers;
+    private Set<Taxi> taxis;
 
-    Set<License>licenses;
+    private Set<License>licenses;
 
     public DataBase(Set<Client> clients, Set<Driver> drivers, Set<Taxi> taxis, Set<License> licenses) {
         this.clients = clients;
         this.drivers = drivers;
         this.taxis = taxis;
         this.licenses = licenses;
+    }
+
+    public DataBase() {
     }
 
     public Set<Client> getClients() {
