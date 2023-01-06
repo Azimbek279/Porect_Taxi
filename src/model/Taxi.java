@@ -1,5 +1,6 @@
 package model;
 
+import dao.DataBase;
 import model.enums.TaxiType;
 
 import java.time.LocalDate;
@@ -14,10 +15,10 @@ public class Taxi {
 
     public Taxi(Long id, String model, String number, String colour, LocalDate year, TaxiType taxiType) {
         this.id = id;
-        this.model = model;
-        this.number = number;
-        this.colour = colour;
         this.year = year;
+        this.number = number;
+        this.model = model;
+        this.colour = colour;
         this.taxiType = taxiType;
     }
 
