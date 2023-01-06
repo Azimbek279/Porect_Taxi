@@ -79,9 +79,6 @@ public class Main {
                         new Client(3L, "OomatAbdulakimova", LocalDate.of(2008, 2, 23),
                                 "+996700895643", new BigDecimal(4500))
                 ));
-                Client client4 = new Client(4L, "MairambekRahmanov", LocalDate.of(2000, 8, 5),
-                        "+996708238754", new BigDecimal(7600));
-
 
                 ClientServiceImpl service = new ClientServiceImpl();
 
@@ -101,7 +98,8 @@ public class Main {
                     int num = scanner.nextInt();
                     switch (num) {
                         case 1:
-                            service.addClient(client4);
+                            service.addClient(new Client(4L, "MairambekRahmanov", LocalDate.of(2000, 8, 5),
+                                    "+996708238754", new BigDecimal(7600)));
                             break;
                         case 2:
                             service.addClient(clients);
@@ -113,13 +111,13 @@ public class Main {
                             service.removeClientById(1L);
                             break;
                         case 5:
-                            service.orderTaxi(1L, String.valueOf(TaxiType.STANDART));
+                            service.orderTaxi();
                             break;
                         case 6:
                             service.getClientAge();
                             break;
                         case 7:
-                            service.universalSorting();
+                            service.universalSorting("Client universalMethod: ");
                         default:
                             System.out.println("THERE IS NO SUCH WAY!");
                     }
