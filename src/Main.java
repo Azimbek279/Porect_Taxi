@@ -98,23 +98,23 @@ public class Main {
                     int num = scanner.nextInt();
                     switch (num) {
                         case 1:
-                            service.addClient(new Client(4L, "MairambekRahmanov", LocalDate.of(2000, 8, 5),
-                                    "+996708238754", new BigDecimal(7600)));
+                            System.out.println(service.addClient(new Client(4L, "MairambekRahmanov", LocalDate.of(2000, 8, 5),
+                                    "+996708238754", new BigDecimal(7600))));
                             break;
                         case 2:
-                            service.addClient(clients);
+                            System.out.println(service.addClient(clients));
                             break;
                         case 3:
-                            service.getClientByName("Aigerim");
+                            System.out.println(service.getClientByName("Aigerim"));
                             break;
                         case 4:
-                            service.removeClientById(1L);
+                            System.out.println(service.removeClientById(1L));
                             break;
                         case 5:
-                            service.orderTaxi();
+                            System.out.println(service.orderTaxi(1L, "Comfort"));
                             break;
                         case 6:
-                            service.getClientAge();
+                            System.out.println(service.getClientAge());
                             break;
                         case 7:
                             service.universalSorting("Client universalMethod: ");
