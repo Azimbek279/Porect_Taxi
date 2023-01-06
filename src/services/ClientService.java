@@ -13,5 +13,5 @@ public interface ClientService {
     Client removeClientById(Long id);
     Taxi orderTaxi(Long clientId, String taxiType);
     Map<Integer, Client> getClientAge();
-    void universalSorting();
+    void universalSorting(String word);
 }

@@ -27,6 +27,10 @@ public class Driver {
         this.taxi1 = taxi1;
     }
 
+    public Driver() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -85,6 +89,10 @@ public class Driver {
 
     public void setTaxi(Taxi taxi1){
         this.taxi1 = taxi1;
+    }
+
+    public Taxi getTaxi1() {
+        return taxi1;
     }
 
     @Override

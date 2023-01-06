@@ -2,9 +2,11 @@ package services.serviceImpl;
 
 import dao.DataBase;
 import model.Client;
+import model.Driver;
 import model.Taxi;
 import model.enums.TaxiType;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.*;
@@ -13,7 +15,7 @@ public class ClientServiceImpl implements services.ClientService {
 
     Scanner scanner = new Scanner(System.in);
 
-    private DataBase dataBase = new DataBase();
+    private DataBase dataBase;
 
     public void setDataBase(DataBase dataBase) {
         this.dataBase = dataBase;
@@ -21,8 +23,7 @@ public class ClientServiceImpl implements services.ClientService {
 
     @Override
     public String addClient(Client client) {
-        this.dataBase.getClients().add(client);
-        return "Successfully!";
+        return "Client added!";
     }
 
     @Override
@@ -59,22 +60,31 @@ public class ClientServiceImpl implements services.ClientService {
 
     @Override
     public Taxi orderTaxi(Long clientId, String taxiType) {
+        Driver driver = new Driver();
+        Taxi result = null;
         for (Client client : dataBase.getClients()) {
-            if (client.getId().equals(clientId)) {
-                for (Taxi taxi : dataBase.getTaxis()) {
-                    if (taxi.getTaxiType().equals(TaxiType.valueOf(taxiType))) {
-                        int t = client.getMoney().intValue();
-                        if (t >= taxi.getTaxiType().getPriceForLanding().intValue()) {
-                            return taxi;
-                        } else {
-                            System.out.println("I don't have that much money.");
-                        }
-                    }
-                }
-            }
+          if (client.getId().equals(clientId)){
+              System.out.println("How many km do you travel?");
+              int km = new Scanner(System.in).nextInt();
+
+              for (Taxi taxi : dataBase.getTaxis()) {
+                  if (taxi.getTaxiType().name().equals(taxiType)){
+                      result = driver.getTaxi1();
+
+                      BigDecimal clientMoney = client.getMoney().subtract(BigDecimal.
+                              valueOf((TaxiType.valueOf(taxiType).getPricePerKM().doubleValue() * km) + TaxiType.valueOf(taxiType).getPriceForLanding().doubleValue()));
+
+                      BigDecimal driverMoney = client.getMoney().add(BigDecimal.
+                              valueOf((TaxiType.valueOf(taxiType).getPricePerKM().doubleValue() * km) + TaxiType.valueOf(taxiType).getPriceForLanding().doubleValue()));
+                      client.setMoney(clientMoney);
+                      client.setMoney(driverMoney);
+                  }
+
+              }
+          }
 
         }
-        return null;
+        return result;
 
     }
 
@@ -89,7 +99,7 @@ public class ClientServiceImpl implements services.ClientService {
     }
 
     @Override
-    public void universalSorting() {
+    public void universalSorting(String word) {
         System.out.println("<<<COMMANDS>>>");
         System.out.println("""
                 1-> sorted id,
@@ -99,18 +109,17 @@ public class ClientServiceImpl implements services.ClientService {
                 5 -> sorted money
                 """);
         while (true) {
-            int number = scanner.nextInt();
-            switch (number) {
-                case 1 ->
-                        dataBase.getClients().stream().sorted(Comparator.comparing(Client::getId)).forEach(System.out::println);
-                case 2 ->
-                        dataBase.getClients().stream().sorted(Comparator.comparing(Client::getFullName)).forEach(System.out::println);
-                case 3 ->
-                        dataBase.getClients().stream().sorted(Comparator.comparing(Client::getDateOfBirth)).forEach(System.out::println);
-                case 4 ->
-                        dataBase.getClients().stream().sorted(Comparator.comparing(Client::getPhoneNumber)).forEach(System.out::println);
-                case 5 ->
-                        dataBase.getClients().stream().sorted(Comparator.comparing(Client::getMoney)).forEach(System.out::println);
+            switch (word) {
+                case "ID: " ->
+                        System.out.println(dataBase.getClients().stream().sorted(Comparator.comparing(Client::getId)).toList());
+                case "FullName: " ->
+                        System.out.println(dataBase.getClients().stream().sorted(Comparator.comparing(Client::getFullName)).toList());
+                case "DateOfBirth: " ->
+                        System.out.println(dataBase.getClients().stream().sorted(Comparator.comparing(Client::getDateOfBirth)).toList());
+                case "PhoneNumber: " ->
+                        System.out.println(dataBase.getClients().stream().sorted(Comparator.comparing(Client::getPhoneNumber)).toList());
+                case "Money: " ->
+                        System.out.println(dataBase.getClients().stream().sorted(Comparator.comparing(Client::getMoney)).toList());
 
 
             }
