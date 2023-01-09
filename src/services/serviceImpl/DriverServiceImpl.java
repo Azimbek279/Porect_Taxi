@@ -25,7 +25,7 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public Driver add(Driver driver) {
         this.dataBase.getDrivers().add(driver);
-        return null;
+        return driver;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class DriverServiceImpl implements DriverService {
         }
         assert acDriver != null;
         acDriver.setTaxi(acTaxi);
-        return "successfully assigned!!";
+        return "successfully assigned!";
     }
 
     @Override

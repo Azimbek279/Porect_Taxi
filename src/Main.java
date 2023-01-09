@@ -1,7 +1,10 @@
 import model.Client;
+import model.Driver;
 import model.Taxi;
+import model.enums.Gender;
 import model.enums.TaxiType;
 import services.serviceImpl.ClientServiceImpl;
+import services.serviceImpl.DriverServiceImpl;
 import services.serviceImpl.TaxiServiceImpl;
 
 import java.math.BigDecimal;
@@ -123,7 +126,57 @@ public class Main {
                     }
                 }
             } else if (command == 3) {
-                System.out.println("Client methods");
+                List<Driver>drivers = new ArrayList<>(Arrays.asList(
+                        new Driver(2L,"Meder","Razakov",Gender.MALE,"0777-32-32-32",new BigDecimal(60000),TaxiType.BUSINESS),
+                        new Driver(3L,"Ulan","Kairi",Gender.MALE,"0777-45-45-45",new BigDecimal(55000),TaxiType.STANDART),
+                        new Driver(4L,"Uluk","Bakytov",Gender.MALE,"0777-56-56-56",new BigDecimal(60000),TaxiType.BUSINESS)
+                ));
+
+                DriverServiceImpl driverService = new DriverServiceImpl();
+                while (true){
+                    System.out.println(""" 
+                            >>>>>>>>>>>> COMMANDS <<<<<<<<<<<
+                            |1| -> Add Driver by Object
+                            |2| -> Add Driver by List
+                            |3| -> Find by id driver
+                            |4| -> Find by name
+                            |5| -> Assign Taxi To Driver
+                            |6| -> Change Taxi or Driver
+                            |7| -> Get Driver by Taxi Model
+                            |8| -> Update Driver
+                            |0| -> Break
+                            """);
+                    while(true){
+                        int button = scanner.nextInt();
+                        switch (button){
+                            case 1:
+                                System.out.println(driverService.add(new Driver(1L,"Beka","Arapov", Gender.MALE,"0777-88-88-90",new BigDecimal(55000),
+                                        TaxiType.COMFORT)));
+                                break;
+                            case 2:
+                                System.out.println(driverService.add(drivers));
+                                break;
+                            case 3:
+                                System.out.println(driverService.findById(1L));
+                                break;
+                            case 4:
+                                System.out.println(driverService.findByName("Meder"));
+                                break;
+                            case 5:
+                                System.out.println(driverService.assignTaxiToDriver(1L,2L));
+                                break;
+                            case 6:
+                                System.out.println(driverService.changeTaxiOrDriver(3L,2L));
+                                break;
+                            case 7:
+                                System.out.println(driverService.getDriverByTaxiModel("Tesla"));
+                                break;
+                            case 8:
+                                driverService.update("Beka");
+                                break;
+                        }
+                    }
+                }
             }else System.out.println("Please enter only <4> commands!");
         }
     }
