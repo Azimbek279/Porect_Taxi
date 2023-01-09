@@ -16,7 +16,7 @@ public class Driver {
 
     private Taxi taxi1;
 
-    public Driver(Long id, String name, String surName, Gender gender, String phoneNumber, BigDecimal money, TaxiType taxi,Taxi taxi1) {
+    public Driver(Long id, String name, String surName, Gender gender, String phoneNumber, BigDecimal money, TaxiType taxi) {
         this.id = id;
         this.name = name;
         this.surName = surName;
@@ -24,7 +24,6 @@ public class Driver {
         this.phoneNumber = phoneNumber;
         this.money = money;
         this.taxi = taxi;
-        this.taxi1 = taxi1;
     }
 
     public Driver() {
